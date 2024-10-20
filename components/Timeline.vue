@@ -34,12 +34,12 @@
       </div>
       <div 
         class="absolute top-0 left-0 h-full bg-gradient-to-r from-sky-400 to-amber-400 dark:from-sky-500 dark:to-amber-500 transition-all duration-300 ease-in-out"
-        :style="{ width: `${(currentIndex + 1) * (100 / 6)}%` }"
+        :style="{ width: `${(currentIndex + 1) * (100 / limitedTimelineData.length)}%` }"
       ></div>
       <button 
         @click="navigateNext" 
         class="absolute right-0 top-0 bottom-0 w-6 bg-amber-300 hover:bg-amber-400 dark:bg-amber-800 dark:hover:bg-amber-700 flex items-center justify-center z-10 text-amber-900 dark:text-white"
-        :disabled="currentIndex >= 5 || isAnimating"
+        :disabled="currentIndex >= limitedTimelineData.length - 1 || isAnimating"
       >
         &gt;
       </button>
@@ -51,8 +51,10 @@
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useAsyncData } from '#app'
 import Applications from './Applications.vue'
 import Implications from './Implications.vue'
 
@@ -64,22 +66,21 @@ const wheelAccumulator = ref(0)
 const WHEEL_THRESHOLD = 100 // Scroll Smoothness
 const DEBOUNCE_DELAY = 50 // Scroll Delay
 
-const timelineData = ref([
-  { stepLabel: 'Step 1', application: { title: 'Application 1', description: 'Description of Application 1' },
-    implication: { title: 'Implication 1', description: 'Description of Implication 1' } },
-  { stepLabel: 'Step 2', application: { title: 'Application 2', description: 'Description of Application 2' },
-    implication: { title: 'Implication 2', description: 'Description of Implication 2' } },
-  { stepLabel: 'Step 3', application: { title: 'Application 3', description: 'Description of Application 3' },
-    implication: { title: 'Implication 3', description: 'Description of Implication 3' } },
-  { stepLabel: 'Step 4', application: { title: 'Application 4', description: 'Description of Application 4' },
-    implication: { title: 'Implication 4', description: 'Description of Implication 4' } },
-  { stepLabel: 'Step 5', application: { title: 'Application 5', description: 'Description of Application 5' },
-    implication: { title: 'Implication 5', description: 'Description of Implication 5' } },
-  { stepLabel: 'Step 6', application: { title: 'Application 6', description: 'Description of Application 6' },
-    implication: { title: 'Implication 6', description: 'Description of Implication 6' } },
-])
+const { data: timelineData } = await useAsyncData('timeline', () => queryContent('/').find())
 
-const limitedTimelineData = computed(() => timelineData.value.slice(0, 6))
+const limitedTimelineData = computed(() => {
+  return timelineData.value.map(item => ({
+    stepLabel: item.stepLabel,
+    application: {
+      title: item.applicationTitle,
+      description: item.applicationDescription
+    },
+    implication: {
+      title: item.implicationTitle,
+      description: item.implicationDescription
+    }
+  })).slice(0, 6)
+})
 
 const totalSets = computed(() => limitedTimelineData.value.length)
 
@@ -164,6 +165,7 @@ const handleResize = () => {
   // TODO
 }
 </script>
+
 <style scoped>
 .h-screen {
   height: 100vh;
@@ -172,7 +174,7 @@ const handleResize = () => {
 }
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease; 
 }
 
 .fade-enter-from,
