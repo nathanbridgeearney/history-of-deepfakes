@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
-  </div>
+  <Timeline/>
+  
 </template>
+<script>
+import Timeline from '~/components/Timeline.vue'
+
+
+</script>
