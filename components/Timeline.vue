@@ -24,7 +24,7 @@
           @click="jumpToStep(index)"
         >
           <div 
-            class="absolute top-0 left-0 h-full w-full transition-transform duration-300 ease-in-out bg-gradient-to-r from-sky-400 to-amber-400 dark:from-sky-500 dark:to-amber-500"
+            class="absolute top-0 left-0 h-full w-full transition-transform duration-300 ease-in-out bg-gradient-to-r from-sky-300 to-amber-300 dark:from-sky-500 dark:to-amber-500"
             :style="getStepStyle(index)"
           ></div>
           <div class="absolute inset-0 flex items-center justify-center text-xs font-semibold text-sky-900 dark:text-white z-10">
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div 
-        class="absolute top-0 left-0 h-full bg-gradient-to-r from-sky-400 to-amber-400 dark:from-sky-500 dark:to-amber-500 transition-all duration-300 ease-in-out"
+        class="absolute top-0 left-0 h-full bg-gradient-to-r from-sky-300 to-amber-300 dark:from-sky-500 dark:to-amber-500 transition-all duration-300 ease-in-out"
         :style="{ width: `${(currentIndex + 1) * (100 / limitedTimelineData.length)}%` }"
       ></div>
       <button 
@@ -73,11 +73,11 @@ const limitedTimelineData = computed(() => {
     stepLabel: item.stepLabel,
     application: {
       title: item.applicationTitle,
-      description: item.applicationDescription
+      description: item.applicationDescription.trim()
     },
     implication: {
       title: item.implicationTitle,
-      description: item.implicationDescription
+      description: item.implicationDescription.trim()
     }
   })).slice(0, 6)
 })
