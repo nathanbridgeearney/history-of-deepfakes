@@ -1,12 +1,12 @@
 <template>
   <div
-    class="h-screen flex flex-col bg-gradient-to-br from-sky-100 to-amber-100 dark:from-sky-950 dark:to-amber-950"
+    class="h-screen flex flex-col bg-gradient-to-br from-sky-100 to-amber-100"
     @wheel.passive="handleWheel"
     tabindex="0"
     @keydown="handleKeyDown"
     ref="container"
   >
-    <div class="flex-1 overflow-hidden bg-amber-100 dark:bg-amber-950">
+    <div class="flex-1 overflow-hidden bg-amber-100 ">
       <transition
         name="fade"
         mode="out-in"
@@ -18,11 +18,11 @@
     </div>
     <div
       ref="scrollContainer"
-      class="h-12 bg-gradient-to-r from-sky-200 to-amber-200 dark:from-sky-900 dark:to-amber-900 relative flex items-center overflow-hidden"
+      class="h-8 bg-gradient-to-r from-sky-200 to-amber-200 relative flex items-center overflow-hidden"
     >
       <button
         @click="navigatePrev"
-        class="absolute left-0 top-0 bottom-0 w-6 bg-sky-300 hover:bg-sky-400 dark:bg-sky-800 dark:hover:bg-sky-700 flex items-center justify-center z-10 text-sky-900 dark:text-white"
+        class="absolute left-0 top-0 bottom-0 w-6 bg-sky-300 hover:bg-sky-400 flex items-center justify-center z-10 text-sky-900 dark:text-white"
         :disabled="currentIndex <= 0 || isAnimating"
       >
         &lt;
@@ -31,14 +31,14 @@
         <div
           v-for="(item, index) in limitedTimelineData"
           :key="index"
-          class="flex-1 h-full border-r border-sky-300 dark:border-sky-800 last:border-r-0 relative cursor-pointer overflow-hidden"
+          class="flex-1 h-full border-r border-sky-300 last:border-r-0 relative cursor-pointer overflow-hidden"
           @click="jumpToStep(index)"
         >
           <div
-            class="absolute inset-0 flex items-center justify-center text-xs font-semibold text-sky-900 dark:text-white z-10 transition-all duration-300"
+            class="absolute inset-0 flex items-center justify-center text-xs font-semibold text-sky-900 z-10 transition-all duration-300"
             :class="{
               'text-base font-bold': index === currentIndex,
-              'text-opacity-50 dark:text-opacity-50': index !== currentIndex,
+              'text-opacity-50 ': index !== currentIndex,
             }"
           >
             {{ item.stepLabel }}
@@ -47,7 +47,7 @@
       </div>
       <button
         @click="navigateNext"
-        class="absolute right-0 top-0 bottom-0 w-6 bg-amber-300 hover:bg-amber-400 dark:bg-amber-800 dark:hover:bg-amber-700 flex items-center justify-center z-10 text-amber-900 dark:text-white"
+        class="absolute right-0 top-0 bottom-0 w-6 bg-amber-300 hover:bg-amber-400 flex items-center justify-center z-10 text-amber-900 dark:text-white"
         :disabled="
           currentIndex >= limitedTimelineData.length - 1 || isAnimating
         "
@@ -55,7 +55,7 @@
         &gt;
       </button>
     </div>
-    <div class="flex-1 overflow-hidden bg-sky-100 dark:bg-sky-950">
+    <div class="flex-1 overflow-hidden bg-sky-100 ">
       <transition
         name="fade"
         mode="out-in"
@@ -65,6 +65,16 @@
         <Applications :key="currentIndex" :current-item="currentApplication" />
       </transition>
     </div>
+    <footer class="flex items-center justify-center border-t">
+      <a
+        href="https://github.com/nathanbridgeearney/history-of-deepfakes/blob/main/README.md"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-center text-blue-600 hover:text-blue-800 "
+      >
+        References Found Here
+      </a>
+    </footer>
   </div>
 </template>
 
@@ -78,9 +88,6 @@ const container = ref(null);
 const scrollContainer = ref(null);
 const currentIndex = ref(0);
 const isAnimating = ref(false);
-const wheelAccumulator = ref(0);
-const WHEEL_THRESHOLD = 100; // Scroll Smoothness
-const DEBOUNCE_DELAY = 50; // Scroll Delay
 
 const { data: timelineData } = await useAsyncData("timeline", () =>
   queryContent("/").find()
@@ -111,24 +118,6 @@ const currentImplication = computed(
   () => limitedTimelineData.value[currentIndex.value].implication
 );
 
-let debounceTimer = null;
-
-const handleWheel = (e) => {
-  e.preventDefault();
-  if (isAnimating.value) return;
-
-  wheelAccumulator.value +=
-    Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-
-  clearTimeout(debounceTimer);
-  debounceTimer = setTimeout(() => {
-    if (Math.abs(wheelAccumulator.value) >= WHEEL_THRESHOLD) {
-      const direction = wheelAccumulator.value > 0 ? 1 : -1;
-      setCurrentIndex(currentIndex.value + direction);
-      wheelAccumulator.value = 0;
-    }
-  }, DEBOUNCE_DELAY);
-};
 
 const handleKeyDown = (e) => {
   if (isAnimating.value) return;
