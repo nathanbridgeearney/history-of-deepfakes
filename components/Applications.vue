@@ -1,9 +1,9 @@
 <template>
-  <div class="h-full flex flex-col bg-sky-100 dark:bg-sky-950">
-    <h2 class="text-2xl font-bold p-4 bg-sky-200 dark:bg-sky-900 text-black dark:text-black">{{ currentItem.title }}</h2>
+  <div class="h-full flex flex-col bg-sky-50 dark:bg-sky-950">
+    <h2 class="text-1xl font-bold p-2 bg-sky-100 dark:bg-sky-900 text-black dark:text-black">{{ currentItem.title }}</h2>
     <div class="flex-grow p-4 overflow-y-auto">
       <div class="h-full bg-white dark:bg-gray-600 shadow-md rounded-lg p-4">
-        <div class="mt-2 text-black dark:text-black">
+        <div class="text-black dark:text-black">
           <p v-for="(paragraph, index) in paragraphs" :key="index" class="mb-4">{{ paragraph }}</p>
         </div>
       </div>
