@@ -1,33 +1,23 @@
 <template>
   <div
-    class="h-screen flex flex-col bg-gradient-to-br from-sky-100 to-amber-100"
+    class="min-h-screen flex flex-col bg-gradient-to-br from-sky-100 to-amber-100"
     @wheel.passive="handleWheel"
     tabindex="0"
     @keydown="handleKeyDown"
     ref="container"
   >
-    <div class="flex-1 overflow-hidden bg-amber-100 ">
-      <transition
-        name="fade"
-        mode="out-in"
-        @before-enter="lockNavigation"
-        @after-leave="unlockNavigation"
-      >
-        <Implications :key="currentIndex" :current-item="currentImplication" />
-      </transition>
-    </div>
     <div
       ref="scrollContainer"
-      class="h-8 bg-gradient-to-r from-sky-200 to-amber-200 relative flex items-center overflow-hidden"
+      class="h-12 md:h-8 bg-gradient-to-r from-sky-200 to-amber-200 relative flex items-center overflow-hidden"
     >
       <button
         @click="navigatePrev"
-        class="absolute left-0 top-0 bottom-0 w-6 bg-sky-300 hover:bg-sky-400 flex items-center justify-center z-10 text-sky-900 dark:text-white"
+        class="absolute left-0 top-0 bottom-0 w-8 md:w-6 bg-sky-300 hover:bg-sky-400 flex items-center justify-center z-10 text-sky-900 dark:text-white text-lg md:text-base"
         :disabled="currentIndex <= 0 || isAnimating"
       >
         &lt;
       </button>
-      <div class="absolute left-6 right-6 top-0 bottom-0 flex">
+      <div class="absolute left-8 md:left-6 right-8 md:right-6 top-0 bottom-0 flex">
         <div
           v-for="(item, index) in limitedTimelineData"
           :key="index"
@@ -37,8 +27,8 @@
           <div
             class="absolute inset-0 flex items-center justify-center text-xs font-semibold text-sky-900 z-10 transition-all duration-300"
             :class="{
-              'text-base font-bold': index === currentIndex,
-              'text-opacity-50 ': index !== currentIndex,
+              'text-sm md:text-base font-bold': index === currentIndex,
+              'text-opacity-50': index !== currentIndex,
             }"
           >
             {{ item.stepLabel }}
@@ -47,30 +37,40 @@
       </div>
       <button
         @click="navigateNext"
-        class="absolute right-0 top-0 bottom-0 w-6 bg-amber-300 hover:bg-amber-400 flex items-center justify-center z-10 text-amber-900 dark:text-white"
-        :disabled="
-          currentIndex >= limitedTimelineData.length - 1 || isAnimating
-        "
+        class="absolute right-0 top-0 bottom-0 w-8 md:w-6 bg-amber-300 hover:bg-amber-400 flex items-center justify-center z-10 text-amber-900 dark:text-white text-lg md:text-base"
+        :disabled="currentIndex >= limitedTimelineData.length - 1 || isAnimating"
       >
         &gt;
       </button>
     </div>
-    <div class="flex-1 overflow-hidden bg-sky-100 ">
-      <transition
-        name="fade"
-        mode="out-in"
-        @before-enter="lockNavigation"
-        @after-leave="unlockNavigation"
-      >
-        <Applications :key="currentIndex" :current-item="currentApplication" />
-      </transition>
+    <div class="flex flex-col md:flex-1 overflow-hidden">
+      <div class="min-h-[40vh] md:flex-1 overflow-hidden">
+        <transition
+          name="fade"
+          mode="out-in"
+          @before-enter="lockNavigation"
+          @after-leave="unlockNavigation"
+        >
+          <Implications :key="currentIndex" :current-item="currentImplication" />
+        </transition>
+      </div>
+      <div class="min-h-[40vh] md:flex-1 overflow-hidden">
+        <transition
+          name="fade"
+          mode="out-in"
+          @before-enter="lockNavigation"
+          @after-leave="unlockNavigation"
+        >
+          <Applications :key="currentIndex" :current-item="currentApplication" />
+        </transition>
+      </div>
     </div>
     <footer class="flex items-center justify-center border-t">
       <a
         href="https://github.com/nathanbridgeearney/history-of-deepfakes/blob/main/README.md"
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center justify-center text-blue-600 hover:text-blue-800 "
+        class="flex items-center justify-center text-blue-600 hover:text-blue-800"
       >
         References Found Here
       </a>
@@ -117,7 +117,6 @@ const currentApplication = computed(
 const currentImplication = computed(
   () => limitedTimelineData.value[currentIndex.value].implication
 );
-
 
 const handleKeyDown = (e) => {
   if (isAnimating.value) return;
@@ -166,7 +165,6 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener("resize", handleResize);
-  clearTimeout(debounceTimer);
 });
 
 const handleResize = () => {
@@ -175,11 +173,6 @@ const handleResize = () => {
 </script>
 
 <style scoped>
-.h-screen {
-  height: 100vh;
-  outline: none;
-  user-select: none;
-}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;

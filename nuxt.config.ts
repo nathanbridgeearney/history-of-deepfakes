@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "@nuxt/content"],
+  modules: ["@nuxt/ui", "@nuxt/content", "@nuxt/image"],
   components: true,
 
 })
