@@ -13,4 +13,10 @@ To showcase the timeline of deepfakes. Applications and implications of artifici
 
     [5]  Thies, Justus & Zollhöfer, Michael & Stamminger, Marc & Theobalt, Christian & Nießner, Matthias. (2016). Face2Face: Real-time Face Capture and Reenactment of RGB Videos. CoRR. abs/2007.14808.
 
+    [6] https://www.ktsm.com/news/local-news/face-swap-in-photoshop-leads-to-child-pornography-arrest/
+
+    [7] https://www.snapchat.com/lens/dc6a7589a13f49eea647591ab428bb67?sender_web_id=a7242545-a03f-443b-88eb-c4bef86d2e7e&device_type=desktop&is_copy_url=true
+
+    [8] https://beforesandafters.com/2021/05/26/vfx-firsts-what-was-the-first-digital-face-replacement-in-a-film/
+
     [temp] Mirsky, Yisroel & Lee, Wenke. (2021). The Creation and Detection of Deepfakes: A Survey. ACM Computing Surveys. 54. 1-41. 10.1145/3425780.
