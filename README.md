@@ -19,4 +19,10 @@ To showcase the timeline of deepfakes. Applications and implications of artifici
 
     [8] https://beforesandafters.com/2021/05/26/vfx-firsts-what-was-the-first-digital-face-replacement-in-a-film/
 
+    [9] Title: Snapchat filters, Creator: kobe.briers, Source: Flickr, Licence: CC 2.0
+
+    [10] https://en.wikipedia.org/wiki/Generative_adversarial_network
+
+    [11] Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, and Yoshua Bengio. Generative Adversarial Networks. arXiv, 2014. Available: https://arxiv.org/abs/1406.2661.
+
     [temp] Mirsky, Yisroel & Lee, Wenke. (2021). The Creation and Detection of Deepfakes: A Survey. ACM Computing Surveys. 54. 1-41. 10.1145/3425780.
