@@ -1,6 +1,6 @@
 <template>
   <div class="w-full bg-sky-50">
-    <h2 class="text-2xl font-bold p-2 bg-sky-100 text-black text-center">{{ currentItem.title }}</h2>
+    <h2 class="text-2xl font-bold p-2 bg-sky-100 text-sky-900 text-center">{{ currentItem.title }}</h2>
     <div class="p-4">
       <div class="bg-white shadow-md rounded-lg p-4 w-10/12 mx-auto">
         <div class="flex flex-col gap-6">

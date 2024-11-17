@@ -31,4 +31,7 @@ To showcase the timeline of deepfakes. Applications and implications of artifici
 
     [14] Diederik P. Kingma and Max Welling. Auto-Encoding Variational Bayes. arXiv preprint, 2022. Available: https://arxiv.org/abs/1312.6114.
 
+    [15] Vaswani, Ashish; Shazeer, Noam; Parmar, Niki; Uszkoreit, Jakob; Jones, Llion; Gomez, Aidan N; Kaiser, Łukasz; Polosukhin, Illia (2017). "Attention is All you Need" (PDF). Advances in Neural Information Processing Systems. 30. Curran Associates, Inc.
+
     [temp] Mirsky, Yisroel & Lee, Wenke. (2021). The Creation and Detection of Deepfakes: A Survey. ACM Computing Surveys. 54. 1-41. 10.1145/3425780.
+
