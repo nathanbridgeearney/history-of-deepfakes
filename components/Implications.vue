@@ -40,7 +40,6 @@
 </template>
 
 <script setup>
-
 const ContentBlockList = defineComponent({
   name: 'ContentBlockList',
   props: {
@@ -81,12 +80,12 @@ const ContentBlock = defineComponent({
           loading: 'lazy'
         }),
         this.content.caption && h('p', {
-          class: 'text-xs text-gray-600 mt-1 italic'
+          class: 'text-xs text-black mt-1 italic'
         }, this.content.caption)
       ]),
       
       text: () => h('p', {
-        class: 'text-sm text-justify'
+        class: 'text-sm text-black text-justify'
       }, this.content.content)
     };
 

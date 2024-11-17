@@ -25,4 +25,10 @@ To showcase the timeline of deepfakes. Applications and implications of artifici
 
     [11] Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, and Yoshua Bengio. Generative Adversarial Networks. arXiv, 2014. Available: https://arxiv.org/abs/1406.2661.
 
+    [12] https://www.vice.com/en/article/reddit-fake-porn-app-daisy-ridley/
+
+    [13] Dilrukshi Gamage, Piyush Ghasiya, Vamshi Bonagiri, Mark E. Whiting, and Kazutoshi Sasahara. 2022. Are Deepfakes Concerning? Analyzing Conversations of Deepfakes on Reddit and Exploring Societal Implications. In Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems (CHI '22). Association for Computing Machinery, New York, NY, USA, Article 103, 1–19. https://doi.org/10.1145/3491102.3517446
+
+    [14] Diederik P. Kingma and Max Welling. Auto-Encoding Variational Bayes. arXiv preprint, 2022. Available: https://arxiv.org/abs/1312.6114.
+
     [temp] Mirsky, Yisroel & Lee, Wenke. (2021). The Creation and Detection of Deepfakes: A Survey. ACM Computing Surveys. 54. 1-41. 10.1145/3425780.
